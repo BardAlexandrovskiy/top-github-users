@@ -7,38 +7,41 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputSearch: {
-        value: '',
-        display: 'flex'
-      },
+      inputSearchValue: '',
       preloader: 'none',
       errorContainer: 'none'
     };
   }
 
-  handleChangeInput = e =>
-    this.setState({ inputSearch: { value: e.target.value } });
+  handleChangeInput = e => this.setState({ inputSearchValue: e.target.value });
 
   getUsersTop = () => {
-    const { inputSearch } = this.state;
-    if (inputSearch.value.trim()) {
+    const { inputSearchValue } = this.state;
+    if (inputSearchValue.trim()) {
       this.setState({ preloader: 'inline-block' });
-      fetch(`https://api.github.com/search/users?q=${inputSearch.value}`)
+      fetch(`https://api.github.com/search/users?q=${inputSearchValue}`)
         .then(res => {
-          if (res.status !== 200) {
+          if (res.status === 200) {
             this.setState({
-              inputSearch: { value: '', display: 'none' }
+              inputSearchValue: ''
             });
-            console.log(res.json());
+            return res.json();
           }
+          throw new Error(res.status);
         })
-        .catch(this.setState({ errorContainer: 'flex' }))
-        .finally(
+        .then(usersInfoObj => {
+          if (usersInfoObj.items.length) {
+            return console.log(usersInfoObj);
+          }
+          throw new Error('Нет пользователей');
+        })
+        .catch(() => this.setState({ errorContainer: 'block' }))
+        .finally(() => {
           this.setState({
-            inputSearch: { value: '' },
+            inputSearchValue: '',
             preloader: 'none'
-          })
-        );
+          });
+        });
     }
   };
 
@@ -49,7 +52,7 @@ export default class Main extends React.Component {
   };
 
   handleClickLogo = () => {
-    this.setState({ inputSearch: { display: 'flex' } });
+    alert('клик на лого');
   };
 
   handleClickErrorButton = () => {
@@ -57,7 +60,7 @@ export default class Main extends React.Component {
   };
 
   render() {
-    const { inputSearch, preloader, errorContainer } = this.state;
+    const { inputSearchValue, preloader, errorContainer } = this.state;
     return (
       <div className="main_app">
         <ErrorContainer
@@ -70,11 +73,10 @@ export default class Main extends React.Component {
         <main className="main_container">
           <div className="lds-dual-ring" style={{ display: preloader }} />
           <InputSearch
-            value={inputSearch.value}
+            value={inputSearchValue}
             handleChangeInput={this.handleChangeInput}
             handlePressInput={this.handlePressInput}
             handleClickButton={this.getUsersTop}
-            style={{ display: inputSearch.display }}
           />
         </main>
       </div>

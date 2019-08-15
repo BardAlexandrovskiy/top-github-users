@@ -111,7 +111,17 @@ body {
   opacity: 0.8;
 }
 
+.lock_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
 .error_container {
+  display: flex;
   width: 50%;
   height: 200px;
   background-color: #24292e;

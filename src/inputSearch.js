@@ -4,11 +4,10 @@ export default function InputSearch({
   value,
   handleChangeInput,
   handlePressInput,
-  handleClickButton,
-  style
+  handleClickButton
 }) {
   return (
-    <div className="container_input" style={style}>
+    <div className="container_input">
       <input
         value={value}
         onChange={handleChangeInput}
