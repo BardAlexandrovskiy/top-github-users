@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import InputSearch from './inputSearch';
 import ErrorContainer from './errorContainer';
+import TopUsersContainer from './topUsersContainer';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Main extends React.Component {
     this.state = {
       inputSearchValue: '',
       preloader: 'none',
-      errorContainer: 'none'
+      errorContainer: 'none',
+      users: []
     };
   }
 
@@ -31,9 +33,16 @@ export default class Main extends React.Component {
         })
         .then(usersInfoObj => {
           if (usersInfoObj.items.length) {
-            return console.log(usersInfoObj);
+            return usersInfoObj.items;
           }
           throw new Error('Нет пользователей');
+        })
+        .then(users => {
+          if (users.langth < 10) {
+            this.setState({ users: users });
+          } else {
+            this.setState({ users: users.slice(0, 10) });
+          }
         })
         .catch(() => this.setState({ errorContainer: 'block' }))
         .finally(() => {
@@ -52,7 +61,7 @@ export default class Main extends React.Component {
   };
 
   handleClickLogo = () => {
-    alert('клик на лого');
+    this.setState({ users: [] });
   };
 
   handleClickErrorButton = () => {
@@ -60,7 +69,7 @@ export default class Main extends React.Component {
   };
 
   render() {
-    const { inputSearchValue, preloader, errorContainer } = this.state;
+    const { inputSearchValue, preloader, errorContainer, users } = this.state;
     return (
       <div className="main_app">
         <ErrorContainer
@@ -78,6 +87,7 @@ export default class Main extends React.Component {
             handlePressInput={this.handlePressInput}
             handleClickButton={this.getUsersTop}
           />
+          <TopUsersContainer users={users} />
         </main>
       </div>
     );

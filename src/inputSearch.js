@@ -12,7 +12,7 @@ export default function InputSearch({
         value={value}
         onChange={handleChangeInput}
         onKeyDown={handlePressInput}
-        placeholder="Введите город"
+        placeholder="Введите город(на английском)"
         className="input_search"
       />
       <button onClick={handleClickButton} className="button_search">
