@@ -7,6 +7,7 @@
   border: 0;
   outline: 0;
   background-color: transparent;
+  word-wrap: break-word;
 }
 
 html,
@@ -18,6 +19,7 @@ body,
 
 body {
   background-color: #fafbfc;
+  min-width: 600px;
 }
 
 .main_app {
@@ -182,7 +184,47 @@ body {
   vertical-align: top;
 }
 
-.login {
+.list_item_content {
+  width: calc(100% - 100px);
+}
+
+.user_login {
   color: rgb(45, 111, 153);
   cursor: pointer;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.user_name {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.user_bio {
+  margin-bottom: 5px;
+}
+
+.user_location {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.user_location_text,
+.user_email_text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user_location_img,
+.user_email_img {
+  vertical-align: middle;
+  width: 14px;
+  height: 18px;
+  margin-right: 3px;
+}
+
+.user_email {
+  display: inline-block;
 }

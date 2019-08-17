@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemList from './itemList';
 
-export default function TopUsersContainer({ users = [] }) {
+export default function TopUsersContainer({ users }) {
   return (
     <ul className="top_users_container">
       {users.map((user, index) => {
