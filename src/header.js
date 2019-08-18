@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 export default function Header({ handleClickLogo }) {
   return (
@@ -23,3 +25,7 @@ export default function Header({ handleClickLogo }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  handleClickLogo: PropTypes.func.isRequired,
+};

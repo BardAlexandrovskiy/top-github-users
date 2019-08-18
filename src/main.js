@@ -11,7 +11,7 @@ export default class Main extends React.Component {
       inputSearchValue: '',
       preloader: 'none',
       errorContainer: 'none',
-      users: []
+      users: [],
     };
   }
 
@@ -69,12 +69,14 @@ export default class Main extends React.Component {
   };
 
   render() {
-    const { inputSearchValue, preloader, errorContainer, users } = this.state;
+    const {
+      inputSearchValue, preloader, errorContainer, users,
+    } = this.state;
     return (
       <div className="main_app">
         <ErrorContainer
           style={{
-            display: errorContainer
+            display: errorContainer,
           }}
           handleClickErrorButton={this.handleClickErrorButton}
         />

@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function InputSearch({
   value,
   handleChangeInput,
   handlePressInput,
-  handleClickButton
+  handleClickButton,
 }) {
   return (
     <div className="container_input">
@@ -15,9 +16,16 @@ export default function InputSearch({
         placeholder="Введите город(на английском)"
         className="input_search"
       />
-      <button onClick={handleClickButton} className="button_search">
+      <button type="button" onClick={handleClickButton} className="button_search">
         Поиск
       </button>
     </div>
   );
 }
+
+InputSearch.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleChangeInput: PropTypes.func.isRequired,
+  handlePressInput: PropTypes.func.isRequired,
+  handleClickButton: PropTypes.func.isRequired,
+};

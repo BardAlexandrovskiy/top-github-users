@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class ItemList extends React.Component {
   constructor(props) {
@@ -7,40 +8,43 @@ export default class ItemList extends React.Component {
       name: '',
       bio: '',
       location: '',
-      email: ''
+      email: '',
     };
   }
+
   componentDidMount() {
     const { user } = this.props;
     return fetch(user.url)
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           return res.json();
         }
+        throw new Error(res.status);
       })
-      .then(user => {
+      .then((userAdditional) => {
         this.setState({
-          name: user.name,
-          bio: user.bio,
-          location: user.location,
-          email: user.email
+          name: userAdditional.name,
+          bio: userAdditional.bio,
+          location: userAdditional.location,
+          email: userAdditional.email,
         });
-        console.log(user);
       });
   }
 
   render() {
     const { user } = this.props;
-    const { name, bio, location, email } = this.state;
+    const {
+      name, bio, location, email,
+    } = this.state;
     return (
       <li className="list_item">
         <div className="user_avatar_container">
           <img src={user.avatar_url} alt="avatar" className="user_avatar" />
         </div>
         <div className="list_item_content">
-          <p className="user_login" onClick={() => window.open(user.html_url)}>
+          <a className="user_login" href={user.html_url}>
             {user.login}
-          </p>
+          </a>
           <p className="user_name">{name}</p>
           <p className="user_bio">{bio}</p>
           <div className="user_location">
@@ -84,3 +88,21 @@ export default class ItemList extends React.Component {
     );
   }
 }
+
+ItemList.propTypes = {
+  user: PropTypes.shape({
+    url: PropTypes.string,
+    avatar_url: PropTypes.string,
+    login: PropTypes.string,
+    html_url: PropTypes.string,
+  }),
+};
+
+ItemList.defaultProps = {
+  user: {
+    url: '',
+    avatar_url: '',
+    login: '',
+    html_url: '',
+  },
+};
