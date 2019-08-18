@@ -2,7 +2,8 @@ import React from 'react';
 import Header from './header';
 import InputSearch from './inputSearch';
 import ErrorContainer from './errorContainer';
-import TopUsersContainer from './topUsersContainer';
+import ItemList from './itemList';
+
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -17,51 +18,55 @@ export default class Main extends React.Component {
 
   handleChangeInput = e => this.setState({ inputSearchValue: e.target.value });
 
+  getError = () => this.setState({ errorContainer: 'block' });
+
+
   getUsersTop = () => {
     const { inputSearchValue } = this.state;
     if (inputSearchValue.trim()) {
       this.setState({ preloader: 'inline-block' });
       fetch(`https://api.github.com/search/users?q=${inputSearchValue}`)
-        .then(res => {
+        .then((res) => {
           if (res.status === 200) {
             this.setState({
-              inputSearchValue: ''
+              inputSearchValue: '',
             });
             return res.json();
           }
           throw new Error(res.status);
         })
-        .then(usersInfoObj => {
+        .then((usersInfoObj) => {
           if (usersInfoObj.items.length) {
             return usersInfoObj.items;
           }
           throw new Error('Нет пользователей');
         })
-        .then(users => {
-          if (users.langth < 10) {
-            this.setState({ users: users });
+        .then((usersArr) => {
+          if (usersArr.langth < 10) {
+            this.setState({ users: usersArr });
           } else {
-            this.setState({ users: users.slice(0, 10) });
+            this.setState({ users: usersArr.slice(0, 10) });
           }
         })
-        .catch(() => this.setState({ errorContainer: 'block' }))
+        .catch(this.getError)
         .finally(() => {
           this.setState({
             inputSearchValue: '',
-            preloader: 'none'
+            preloader: 'none',
           });
         });
     }
   };
 
-  handlePressInput = e => {
+  handlePressInput = (e) => {
     if (e.keyCode === 13) {
       this.getUsersTop();
     }
   };
 
   handleClickLogo = () => {
-    this.setState({ users: [] });
+    // this.setState({ users: [] });
+    window.location.reload();
   };
 
   handleClickErrorButton = () => {
@@ -82,14 +87,21 @@ export default class Main extends React.Component {
         />
         <Header handleClickLogo={this.handleClickLogo} />
         <main className="main_container">
-          <div className="lds-dual-ring" style={{ display: preloader }} />
+          <div className="lds-ellipsis" style={{ display: preloader }}>
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
           <InputSearch
             value={inputSearchValue}
             handleChangeInput={this.handleChangeInput}
             handlePressInput={this.handlePressInput}
             handleClickButton={this.getUsersTop}
           />
-          <TopUsersContainer users={users} />
+          <ul className="top_users_container">
+            {users.map(user => <ItemList getError={this.getError} key={user.id} user={user} />)}
+          </ul>
         </main>
       </div>
     );

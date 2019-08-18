@@ -9,11 +9,13 @@ export default class ItemList extends React.Component {
       bio: '',
       location: '',
       email: '',
+      preloader: 'none',
     };
   }
 
   componentDidMount() {
-    const { user } = this.props;
+    const { user, getError } = this.props;
+    this.setState({ preloader: 'block' });
     return fetch(user.url)
       .then((res) => {
         if (res.status === 200) {
@@ -28,16 +30,24 @@ export default class ItemList extends React.Component {
           location: userAdditional.location,
           email: userAdditional.email,
         });
-      });
+      })
+      .catch(getError)
+      .finally(() => this.setState({ preloader: 'none' }));
   }
 
   render() {
     const { user } = this.props;
     const {
-      name, bio, location, email,
+      name, bio, location, email, preloader,
     } = this.state;
     return (
       <li className="list_item">
+        <div className="lds-ellipsis" style={{ display: preloader }}>
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
         <div className="user_avatar_container">
           <img src={user.avatar_url} alt="avatar" className="user_avatar" />
         </div>
@@ -65,7 +75,7 @@ export default class ItemList extends React.Component {
             </svg>
             <p className="user_location_text">{location}</p>
           </div>
-          <p className="user_email">
+          <div className="user_email">
             <svg
               display={email ? 'inline-block' : 'none'}
               className="user_email_img"
@@ -82,7 +92,7 @@ export default class ItemList extends React.Component {
               />
             </svg>
             <p className="user_email_text">{email}</p>
-          </p>
+          </div>
         </div>
       </li>
     );
@@ -96,6 +106,7 @@ ItemList.propTypes = {
     login: PropTypes.string,
     html_url: PropTypes.string,
   }),
+  getError: PropTypes.func.isRequired,
 };
 
 ItemList.defaultProps = {
