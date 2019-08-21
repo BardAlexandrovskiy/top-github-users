@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/top-github-users/static/css/main.4a49d315.chunk.css",
+    "main.css": "/top-github-users/static/css/main.538ca834.chunk.css",
     "main.js": "/top-github-users/static/js/main.0e808dc3.chunk.js",
     "main.js.map": "/top-github-users/static/js/main.0e808dc3.chunk.js.map",
     "runtime~main.js": "/top-github-users/static/js/runtime~main.33efc2c0.js",
@@ -8,8 +8,8 @@
     "static/js/2.3d258b33.chunk.js": "/top-github-users/static/js/2.3d258b33.chunk.js",
     "static/js/2.3d258b33.chunk.js.map": "/top-github-users/static/js/2.3d258b33.chunk.js.map",
     "index.html": "/top-github-users/index.html",
-    "precache-manifest.3d97db2c0f4755395742865bf6906504.js": "/top-github-users/precache-manifest.3d97db2c0f4755395742865bf6906504.js",
+    "precache-manifest.5a2e7fe23435be9143dc4659d5b27b8d.js": "/top-github-users/precache-manifest.5a2e7fe23435be9143dc4659d5b27b8d.js",
     "service-worker.js": "/top-github-users/service-worker.js",
-    "static/css/main.4a49d315.chunk.css.map": "/top-github-users/static/css/main.4a49d315.chunk.css.map"
+    "static/css/main.538ca834.chunk.css.map": "/top-github-users/static/css/main.538ca834.chunk.css.map"
   }
 }
