@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/top-github-users/static/css/main.aee8904d.chunk.css",
-    "main.js": "/top-github-users/static/js/main.b8c64367.chunk.js",
-    "main.js.map": "/top-github-users/static/js/main.b8c64367.chunk.js.map",
+    "main.css": "/top-github-users/static/css/main.10f00f66.chunk.css",
+    "main.js": "/top-github-users/static/js/main.0e808dc3.chunk.js",
+    "main.js.map": "/top-github-users/static/js/main.0e808dc3.chunk.js.map",
     "runtime~main.js": "/top-github-users/static/js/runtime~main.33efc2c0.js",
     "runtime~main.js.map": "/top-github-users/static/js/runtime~main.33efc2c0.js.map",
     "static/js/2.3d258b33.chunk.js": "/top-github-users/static/js/2.3d258b33.chunk.js",
     "static/js/2.3d258b33.chunk.js.map": "/top-github-users/static/js/2.3d258b33.chunk.js.map",
     "index.html": "/top-github-users/index.html",
-    "precache-manifest.469efc64c2f3b62e2b7793ab5e160546.js": "/top-github-users/precache-manifest.469efc64c2f3b62e2b7793ab5e160546.js",
+    "precache-manifest.54e073848c7d5ebb258c89c3fff3b631.js": "/top-github-users/precache-manifest.54e073848c7d5ebb258c89c3fff3b631.js",
     "service-worker.js": "/top-github-users/service-worker.js",
-    "static/css/main.aee8904d.chunk.css.map": "/top-github-users/static/css/main.aee8904d.chunk.css.map"
+    "static/css/main.10f00f66.chunk.css.map": "/top-github-users/static/css/main.10f00f66.chunk.css.map"
   }
 }
