@@ -8,6 +8,7 @@
   outline: 0;
   background-color: transparent;
   word-wrap: break-word;
+  box-sizing: border-box;
 }
 
 html,
@@ -28,10 +29,12 @@ body {
 
 .header {
   background-color: #24292e;
-  height: 64px;
-  text-align: center;
   color: #fff;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
 }
 
 .logo {
@@ -259,4 +262,39 @@ body {
 
 .user_email {
   display: inline-block;
+}
+
+@media (max-width: 736px) {
+  .title_header {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+  .container_input {
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+  }
+
+  .input_search {
+    margin-right: 0;
+    margin-bottom: 3px;
+    width: 100%;
+  }
+
+  .button_search {
+    padding: 5px 20px;
+  }
+
+  .top_users_container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 568px) {
+  .title_header {
+    font-size: 17px;
+  }
 }

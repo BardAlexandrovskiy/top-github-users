@@ -52,7 +52,7 @@ export default class ItemList extends React.Component {
           <img src={user.avatar_url} alt="avatar" className="user_avatar" />
         </div>
         <div className="list_item_content">
-          <a className="user_login" href={user.html_url}>
+          <a className="user_login" href={user.html_url} target="_blank" rel="noreferrer noopener">
             {user.login}
           </a>
           <p className="user_name">{name}</p>

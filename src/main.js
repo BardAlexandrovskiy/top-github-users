@@ -25,7 +25,8 @@ export default class Main extends React.Component {
     const { inputSearchValue } = this.state;
     if (inputSearchValue.trim()) {
       this.setState({ preloader: 'inline-block' });
-      fetch(`https://api.github.com/search/users?q=${inputSearchValue}`)
+      const location = inputSearchValue.replace(' ', '-');
+      fetch(`https://api.github.com/search/users?q=location:${location}+repos:%3E9+followers:%3E10`)
         .then((res) => {
           if (res.status === 200) {
             this.setState({
