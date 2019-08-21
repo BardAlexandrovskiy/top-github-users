@@ -38,7 +38,7 @@ body {
 }
 
 .title_header {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .description_header {
@@ -302,7 +302,8 @@ body {
   }
 
   .top_users_container {
-    padding: 0;
+    padding: 0 20px;
+    width: 100%;
   }
 }
 
